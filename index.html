@@ -310,11 +310,7 @@
 
       <label for="from">From:</label>
 
-      <input id="from" placeholder="Someone who loves you ♡"> 
-      <label for="to">To:</label>
-
-      <input id="to" placeholder="The love of my life ♡">
-
+      <input id="from" placeholder="Someone who loves you ♡">
 
       <label for="date">Date:</label>
 
@@ -347,10 +343,8 @@
       <div class="signature">
 
         Forever yours,
-        <span id="to-span"></span>
-   
+
       </div>
-      
 
     </div>
 
@@ -427,8 +421,6 @@
       const date = document.getElementById('date').value ? new Date(document.getElementById('date').value).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Feb 14, 2026';
 
       const message = document.getElementById('message').value || 'My dearest love,\n\nEvery time I look at you, my heart still skips a beat — just like the very first day.\nThank you for being my safe place, my biggest cheerleader, and the reason I smile for no reason.\n\nI promise to keep choosing you, every single day.\nHappy Valentine\'s Day, my forever person. 💌\n\nI love you more than words can ever say ♡';
-      
-       const to = document.getElementById('to').value || 'The love of my life ♡';
 
       const base = window.location.origin + window.location.pathname;
 
