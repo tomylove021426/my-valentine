@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Valentine Messages</title>
+
+  <style>
+
+    * {
+
+      margin: 0;
+
+      padding: 0;
+
+      box-sizing: border-box;
+
+    }
+
+    body {
+
+      min-height: 100vh;
+
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+
+      color: #333;
+
+      overflow-x: hidden;
+
+    }
+
+    /* Floating hearts background */
+
+    .hearts {
+
+      position: fixed;
+
+      top: 0;
+
+      left: 0;
+
+      width: 100%;
+
+      height: 100%;
+
+      pointer-events: none;
+
+      z-index: 0;
+
+    }
+
+    .heart {
+
+      position: absolute;
+
+      font-size: 1.8rem;
+
+      color: rgba(255, 105, 180, 0.7);
+
+      animation: float 12s infinite linear;
+
+      user-select: none;
+
+    }
+
+    @keyframes float {
+
+      0%   { transform: translateY(100vh) rotate(0deg); opacity: 0.6; }
+
+      20%  { opacity: 1; }
+
+      100% { transform: translateY(-15vh) rotate(720deg); opacity: 0; }
+
+    }
+
+    .container {
+
+      position: relative;
+
+      z-index: 10;
+
+      max-width: 720px;
+
+      margin: 0 auto;
+
+      padding: 2.5rem 1.5rem;
+
+      text-align: center;
+
+    }
+
+    h1 {
+
+      font-size: 3.4rem;
+
+      color: #fff;
+
+      text-shadow: 0 4px 12px rgba(255, 50, 120, 0.5);
+
+      margin-bottom: 0.8rem;
+
+      font-weight: 800;
+
+    }
+
+    h2 {
+
+      font-size: 2.1rem;
+
+      color: #fff;
+
+      margin-bottom: 2rem;
+
+      font-weight: 400;
+
+    }
+
+    .form {
+
+      background: rgba(255, 255, 255, 0.92);
+
+      border-radius: 1.6rem;
+
+      padding: 2.8rem 2rem;
+
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+
+      backdrop-filter: blur(8px);
+
+      border: 1px solid rgba(255,255,255,0.4);
+
+      margin: 1.5rem 0;
+
+      text-align: left;
+
+    }
+
+    .form label {
+
+      display: block;
+
+      font-size: 1.1rem;
+
+      color: #e74c3c;
+
+      margin-bottom: 0.5rem;
+
+      font-weight: 600;
+
+    }
+
+    .form input, .form textarea {
+
+      width: 100%;
+
+      padding: 0.8rem;
+
+      margin-bottom: 1.5rem;
+
+      border: 1px solid #ddd;
+
+      border-radius: 0.6rem;
+
+      font-size: 1rem;
+
+    }
+
+    .form textarea {
+
+      height: 200px;
+
+      resize: vertical;
+
+    }
+
+    .form button {
+
+      width: 100%;
+
+      padding: 1rem;
+
+      background: #e74c3c;
+
+      color: #fff;
+
+      border: none;
+
+      border-radius: 0.6rem;
+
+      font-size: 1.2rem;
+
+      cursor: pointer;
+
+      transition: background 0.3s;
+
+    }
+
+    .form button:hover {
+
+      background: #c0392b;
+
+    }
+
+    .generated-link {
+
+      margin-top: 1.5rem;
+
+      padding: 1rem;
+
+      background: #f9f9f9;
+
+      border-radius: 0.6rem;
+
+      word-break: break-all;
+
+    }
+
+    .card {
+
+      background: rgba(255, 255, 255, 0.92);
+
+      border-radius: 1.6rem;
+
+      padding: 2.8rem 2rem;
+
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+
+      backdrop-filter: blur(8px);
+
+      border: 1px solid rgba(255,255,255,0.4);
+
+      margin: 1.5rem 0;
+
+    }
+
+    .from-date {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      font-size: 1.1rem;
+
+      color: #e74c3c;
+
+      margin-bottom: 1.6rem;
+
+      font-weight: 600;
+
+    }
+
+    .message {
+
+      font-size: 1.35rem;
+
+      line-height: 1.65;
+
+      color: #2d2d2d;
+
+      white-space: pre-wrap;
+
+      text-align: left;
+
+    }
+
+    .signature {
+
+      margin-top: 2.5rem;
+
+      font-style: italic;
+
+      color: #e74c3c;
+
+      font-size: 1.25rem;
+
+    }
+
+    @media (max-width: 500px) {
+
+      h1 { font-size: 2.6rem; }
+
+      h2 { font-size: 1.7rem; }
+
+      .form, .card { padding: 2rem 1.4rem; }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="hearts" id="hearts"></div>
+
+  <div class="container">
+
+    <h1>Valentine Messages</h1>
+
+    <h2>Share a heartfelt note with a lovely link</h2>
+
+    <div id="form" class="form">
+
+      <label for="from">From:</label>
+
+      <input id="from" placeholder="Someone who loves you ♡">
+
+      <label for="date">Date:</label>
+
+      <input id="date" type="date">
+
+      <label for="message">Message:</label>
+
+      <textarea id="message" placeholder="Write your heartfelt message here..."></textarea>
+
+      <button onclick="generateLink()">Generate Link</button>
+
+      <div id="generated-link" class="generated-link" style="display: none;"></div>
+
+    </div>
+
+    <div id="card" class="card" style="display: none;">
+
+      <h2 style="text-align: center; color: #e74c3c; margin-bottom: 1.5rem;">Happy Valentine's Day!</h2>
+
+      <div class="from-date">
+
+        <span id="from-span"></span>
+
+        <span id="date-span"></span>
+
+      </div>
+
+      <div id="message-div" class="message"></div>
+
+      <div class="signature">
+
+        Forever yours,
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    // Floating hearts animation
+
+    function createHeart() {
+
+      const heart = document.createElement("div");
+
+      heart.className = "heart";
+
+      heart.innerHTML = "♡";
+
+      heart.style.left = Math.random() * 100 + "vw";
+
+      heart.style.animationDuration = (Math.random() * 8 + 10) + "s";
+
+      heart.style.fontSize = (Math.random() * 1.2 + 1.1) + "rem";
+
+      document.getElementById("hearts").appendChild(heart);
+
+      setTimeout(() => heart.remove(), 15000);
+
+    }
+
+    setInterval(createHeart, 380);
+
+    // One-time burst of hearts on load
+
+    for(let i = 0; i < 12; i++) {
+
+      setTimeout(createHeart, i * 180);
+
+    }
+
+    // Check for URL params on load
+
+    window.onload = function() {
+
+      const params = new URLSearchParams(window.location.search);
+
+      if (params.has('message')) {
+
+        document.getElementById('form').style.display = 'none';
+
+        document.getElementById('card').style.display = 'block';
+
+        document.getElementById('from-span').innerHTML = 'From: ' + (decodeURIComponent(params.get('from')) || 'Someone who loves you ♡');
+
+        document.getElementById('date-span').innerHTML = decodeURIComponent(params.get('date')) || 'Feb 14, 2026';
+
+        document.getElementById('message-div').innerHTML = decodeURIComponent(params.get('message')).replace(/\n/g, '<br>');
+
+      } else {
+
+        // Set default date to Feb 14, 2026 (Valentine's Day)
+
+        document.getElementById('date').value = '2026-02-14';
+
+      }
+
+    };
+
+    // Generate link function
+
+    function generateLink() {
+
+      const from = document.getElementById('from').value || 'Someone who loves you ♡';
+
+      const date = document.getElementById('date').value ? new Date(document.getElementById('date').value).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Feb 14, 2026';
+
+      const message = document.getElementById('message').value || 'My dearest love,\n\nEvery time I look at you, my heart still skips a beat — just like the very first day.\nThank you for being my safe place, my biggest cheerleader, and the reason I smile for no reason.\n\nI promise to keep choosing you, every single day.\nHappy Valentine\'s Day, my forever person. 💌\n\nI love you more than words can ever say ♡';
+
+      const base = window.location.origin + window.location.pathname;
+
+      const url = base + '?from=' + encodeURIComponent(from) + '&date=' + encodeURIComponent(date) + '&message=' + encodeURIComponent(message);
+
+      const linkDiv = document.getElementById('generated-link');
+
+      linkDiv.innerHTML = 'Your shareable link: <br><a href="' + url + '" target="_blank">' + url + '</a><br><br>Copy and send it to your loved one!';
+
+      linkDiv.style.display = 'block';
+
+    }
+
+  </script>
+
+</body>
+
+</html>
